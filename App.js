@@ -6,7 +6,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Datos from './components/screen/Datos';
 
 
-
 const Stack = createStackNavigator();
 
 const App:() => React$Node = () => {
@@ -22,4 +21,3 @@ const App:() => React$Node = () => {
 }
 
 export default App;
-

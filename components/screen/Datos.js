@@ -1,44 +1,46 @@
 import React, { Component } from 'react';
-import { Container, Content, CardItem,Text, Button } from 'native-base';
-import {StyleSheet} from 'react-native';
-import { createStackNavigator } from '@react-navigation/stack';
+import {View,Text, ActivityIndicator} from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 
-const Stack = createStackNavigator();
-
-export default class IconTextboxExample extends Component {
-    render() {
-        const navegar = this.props.navigation;
-      return (
-        <Container>
-          <Content padder contentContainerStyle = {styles.content}>
-             <CardItem header bordered>
-                <Text style={styles.textCenter}>{this.props.route.params.titulo}</Text>
-              </CardItem>
-              <CardItem>
-              <Text style={styles.textCenter}>{this.props.route.params.nombre}</Text>
-              </CardItem>
-              <CardItem>
-              <Text style={styles.textCenter}>{this.props.route.params.contraseña}</Text>
-              </CardItem>
-              <Button success style={{justifyContent:'center', marginLeft: '26%', width: 170, margin: 10}}
-            onPress={() => navegar.navigate('Login') }>
-              <Text>Continuar</Text></Button>
-              <Button danger style={{justifyContent:'center', marginLeft: '26%', width: 170, margin: 10}}
-            onPress={() => navegar.navigate('Login') }>
-              <Text>Cerrar Sesión, ¿Seguro?</Text></Button>
-          </Content>
-        </Container>
-      );
+class Usuario extends Component{
+  constructor(props){
+    super(props);
+    this.state={
+      isLoading:true,
+    }
+  }
+  async componentDidMount(){
+    try{
+      const response = await fetch('https://swapi.co/api/films');
+      const responseJson = await response.json();
+      this.setState({
+        isLoading: false,
+        dataSource: responseJson.results,
+      },function(){
+      });
+    }catch(error){
+      console.log(error);
     }
   }
 
-const styles = StyleSheet.create({
-    content: {
-      flex: 1,
-      justifyContent: 'left', 
-    },
-    textCenter: {
-      textAlign: 'center',
-      width: '100%'
+  render(){
+    if(this.state.isLoading==true){
+      return(
+        <View style={{flex:1, padding: 20}}>
+          <ActivityIndicator />
+        </View>
+      );
     }
-});
+    return(
+      <View>
+        <FlatList 
+          data={this.state.dataSource}
+          renderItem={({item}) => 
+            <Text>{item.title}, {item.director}</Text>
+          }
+          keyExtractor = {({id},index)=>id} />
+      </View>
+    );
+  }
+}
+export default Usuario;

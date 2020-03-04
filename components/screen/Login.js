@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Card, Content,  Body, Text, Button, Item, CardItem, Input, Icon } from 'native-base';
-import { StyleSheet, Alert } from 'react-native';
+import { StyleSheet, Alert,ActivityIndicator } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Registro from './Registro'
 
@@ -18,17 +18,17 @@ class Login extends Component {
       <Content padder contentContainerStyle={styles.content}>
         <Card>
           <CardItem header bordered>
-            <Text style={styles.textCenter}>Iniciar sesión</Text>
+            <Text style={styles.textCenter}>Inicio de sesión</Text>
           </CardItem>
           <CardItem bordered>
             <Body>
               <Item inlineLabel>
                 <Icon type='FontAwesome' name='user' />
-                  <Input placeholder='Usuario' value={this.state.nombre} onChangeText={(nombre)=> this.setState({nombre}) }/>
+                  <Input placeholder='Nombre' value={this.state.nombre} onChangeText={(nombre)=> this.setState({nombre}) }/>
                 </Item>
                 <Item inlineLabel last>
                   <Icon type='FontAwesome' name='lock' />
-                  <Input placeholder='Pass' secureTextEntry={true} value={this.state.contraseña} onChangeText={(contraseña)=> this.setState({contraseña}) }/>
+                  <Input placeholder='Contraseña' secureTextEntry={true} value={this.state.contraseña} onChangeText={(contraseña)=> this.setState({contraseña}) }/>
                 </Item>
             </Body>
           </CardItem>
@@ -36,29 +36,32 @@ class Login extends Component {
             <Button primary style={styles.boton}
             onPress={() => {
               navegar.navigate('Datos', {
-                titulo: 'Hola de Nuevo',
+                titulo: 'Bienvenido!! '+''+ this.state.nombre,
                 nombre: this.state.nombre,
                 contraseña: this.state.contraseña
               });
             }}>
-              <Text> Acceso </Text></Button>
+              <Text> Entrar </Text></Button>
           </CardItem>
-            <Button primary style={{justifyContent:'center', marginLeft: '56', width: 125}}
+          <Text style={{alignSelf:'center'}}> Aun no tienes cuenta?</Text>
+            <Button primary style={{justifyContent:'center', marginLeft: '56%', width: 125}}
             onPress={() => navegar.navigate('Registro', { 
-              titulo: 'Registro de usuario'
+              titulo: 'Registrate!!'
               }) }>
-              <Text>Registrarse</Text></Button>
+              <Text>Registrate!</Text></Button>
         </Card>
       </Content>
     </Container>
     ); //End return
   } //End render
-}; //End class
+} //End class
 
 const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
+    backgroundColor:"#ffffff",
+
   },
   textCenter: {
     textAlign: 'center',
@@ -66,7 +69,6 @@ const styles = StyleSheet.create({
   },
   boton: {
     marginLeft: '36%',
-    backgroundColor:'red',
   }
 });
 

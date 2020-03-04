@@ -18,33 +18,31 @@ class Registro extends Component {
               {this.props.route.params.titulo}
             </Text>
           </CardItem>
-          <Item>
-            <Text style={styles.textCenter}>Ingresa tus datos</Text>
-          </Item>
- 
+          
+         
           <CardItem bordered>
             <Body>
-            <Item inlineLabel last>
-                  <Icon type='Entypo' name='email' />
-                  <Input placeholder='Correo electronico' />
-                </Item>
               <Item inlineLabel>
                 <Icon type='FontAwesome' name='user' />
-                  <Input placeholder='Nombre(s)' />
+                  <Input placeholder='Nombre' />
                 </Item>
                 <Item inlineLabel last>
                   <Icon type='FontAwesome' name='user' />
-                  <Input placeholder='Apellido(s)' />
+                  <Input placeholder='Apellidos' />
+                </Item>
+                <Item inlineLabel last>
+                  <Icon type='Entypo' name='email' />
+                  <Input placeholder='Correo' />
                 </Item>
                 <Item inlineLabel last>
                   <Icon type='FontAwesome' name='lock' />
                   <Input placeholder='Contraseña' secureTextEntry={true} />
-                </Item>                
+                </Item>
             </Body>
           </CardItem>
           <CardItem footer bordered>
-            <Button primary style={styles.boton}
-            onPress={()=> Alert.alert('!!!Bienvenido!!!')}><Text> Registrarse </Text></Button>
+            <Button success style={styles.boton}
+            onPress={()=> Alert.alert('¡Usuario registrado!')}><Text> Registrarse </Text></Button>
           </CardItem>
         </Card>
       </Content>
@@ -65,11 +63,7 @@ const styles = StyleSheet.create({
   boton: {
     marginLeft: '32%'
   },
-  boton_red: {
-    justifyContent: 'center',
-    width: 165.7,
-    marginLeft: '3%'
-  }
+
 });
 
 

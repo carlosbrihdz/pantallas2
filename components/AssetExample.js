@@ -21,14 +21,13 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   paragraph: {
-    margin: 24,
+    margin: 18,
     marginTop: 0,
-    fontSize: 14,
-    fontWeight: 'bold',
+    fontSize: 10,
     textAlign: 'center',
   },
   logo: {
-    height: 128,
-    width: 128,
+    height: 100,
+    width: 100,
   }
 });

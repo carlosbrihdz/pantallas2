@@ -1,2 +1,2 @@
-MANCILLA GUTIÉRREZ EDGAR JESÚS
-TI02SM-18
+Brito Hernández Juan Carlos 
+TI01SM-18
